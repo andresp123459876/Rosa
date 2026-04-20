@@ -18,12 +18,22 @@ body {
     background-image: url("/img/fondoTacosDeGuisado.jpg");
 }
 
+header .ver-menu{
+    height: 100px;
+    color: var(--amarillo-fondo);
+    font-family: var(--font-comic);
+    font-size: 3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin-top: 10%;
+    margin-top: 5%;
 }
 
 .container h1 {

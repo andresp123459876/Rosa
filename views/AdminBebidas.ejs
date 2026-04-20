@@ -13,7 +13,7 @@
     <header>
         <h1><a href="/user/logout">Salir</a></h1>
         <h2 class="modificar"><a href="/user/admin">Modificar Menu</a></h2>
-        <h2 class="modificar"><a href="/user/admin-bebidas">Modificar Menu Bebidas</a></h2>
+        <h2 class="modificar"><a href="">Modificar Menu Bebidas</a></h2>
         <h3>Usuario: <%= user.charAt(0).toUpperCase() + user.slice(1) %>
         </h3>
         <!--charAt(0).toUpperCase toma la primera letra y la hace mayuscula, slice(1) muestra todo apartir de la posicion [1] del string-->
@@ -21,36 +21,32 @@
 
     <div class="container">
         <div class="header-carta">
-            <h2 class="titulo-carta">Menu de Tacos</h2>
-            <form action="/user/admin/agregar" method="POST" class="form-agregar">
-                <input type="text" name="nombre" placeholder="Nombre del platillo" required>
-                <input type="text" name="descripcion" placeholder="Descripción" required>
+            <h2 class="titulo-carta">Menu de Bebidas</h2>
+            <form action="/user/admin/agregar-bebida" method="POST" class="form-agregar">
+                <input type="text" name="nombre" placeholder="Nombre de la Bebida" required>
                 <input type="number" name="precio" placeholder="Precio" required>
-                <button type="submit" class="boton-agregar">Agregar nuevo platillo</button>
+                <button type="submit" class="boton-agregar">Agregar nueva Bebida</button>
             </form>
         </div>
 
         <div class="container-menu">
-            <% if (platillos && platillos.length> 0) { %>
-                <% platillos.forEach(platillo=> { %>
+            <% if (bebidas && bebidas.length> 0) { %>
+                <% bebidas.forEach(bebida=> { %>
                     <div class="platillos">
                         <div class="descripcion-taco">
                             <h3>
-                                <%= platillo.nombre %>
+                                <%= bebida.nombre %>
                             </h3>
-                            <p>
-                                <%= platillo.descripcion %>
-                            </p>
                             <h2>
-                                <%= platillo.precio %> $
+                                <%= bebida.precio %> $
                             </h2>
                         </div>
                         <div class="botones">
-                            <form action="/user/admin/eliminar" method="POST">
-                                <input type="hidden" name="id" value="<%= platillo.id %>">
+                            <form action="/user/admin/eliminar-bebida" method="POST">
+                                <input type="hidden" name="id" value="<%= bebida.id %>">
                                 <button type="submit" class="boton-eliminar">Eliminar</button>
                             </form>
-                            <form action="/user/admin/editar/<%= platillo.id %>" method="GET" style="margin:0;">
+                            <form action="/user/admin/editar-bebida/<%= bebida.id %>" method="GET" style="margin:0;">
                                 <button type="submit" class="boton-modificar">Modificar</button>
                             </form>
                         </div>

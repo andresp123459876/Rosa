@@ -33,7 +33,7 @@ header a {
     text-decoration: none;
 }
 
-header a:hover{
+header h1 a:hover{
     color: red;
 }   
 
@@ -138,6 +138,17 @@ header a:hover{
     font-size: 3rem;
     text-align: center;
     color: var(--amarillo-fondo);
+}
+
+.container-menu .platillos .descripcion-taco h2 a{
+    font-size: 3rem;
+    text-align: center;
+    color: var(--amarillo-fondo);
+    text-decoration: none;
+}
+
+.modificar a:hover{
+    color: white;
 }
 
 .botones {

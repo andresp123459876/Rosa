@@ -187,7 +187,7 @@ app.post('/user/register', async (req, res) => {
     }
 });
 
-// ─── PANEL ADMIN ──────────────────────────────────────────────────────────────
+// ─── PANEL ADMIN Tacos──────────────────────────────────────────────────────────────
 
 app.get('/user/admin', checkNotAuthenticated, async (req, res) => {
     try {
@@ -272,6 +272,97 @@ app.post('/user/admin/actualizar/:id', checkNotAuthenticated, async (req, res) =
             [nombre.trim(), descripcion.trim(), precioNum, id]
         );
         res.redirect('/user/admin');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al actualizar el platillo');
+    }
+});
+
+// ─── PANEL ADMIN BEBIDAS──────────────────────────────────────────────────────────────
+
+app.get('/user/admin-bebidas', checkNotAuthenticated, async (req, res) => {
+    try {
+        const resultado = await pool.query('SELECT * FROM bebidas ORDER BY id ASC');
+        res.render('AdminBebidas.ejs', {
+            user: req.user.nombre,
+            bebidas: resultado.rows
+        });
+    } catch (err) {
+        console.error('Error al obtener bebidas:', err);
+        res.status(500).send('Error al cargar el panel de administración');
+    }
+});
+
+app.post('/user/admin/agregar-bebida', checkNotAuthenticated, async (req, res) => {
+    const { nombre, precio } = req.body;
+
+    // MEJORA: validación del precio en el servidor
+    const precioNum = parseFloat(precio);
+    if (!nombre || isNaN(precioNum) || precioNum < 0 || precioNum > 99999) {
+        return res.status(400).send('Datos inválidos');
+    }
+
+    try {
+        await pool.query(
+            'INSERT INTO bebidas (nombre, precio) VALUES ($1, $2)',
+            [nombre.trim(), precioNum]
+        );
+        res.redirect('/user/admin-bebidas');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al agregar el platillo');
+    }
+});
+
+app.post('/user/admin/eliminar-bebida', checkNotAuthenticated, async (req, res) => {
+    const { id } = req.body;
+
+    // MEJORA: validar que el id sea un número entero
+    if (!id || isNaN(parseInt(id))) {
+        return res.status(400).send('ID inválido');
+    }
+
+    try {
+        await pool.query('DELETE FROM bebidas WHERE id = $1', [parseInt(id)]);
+        res.redirect('/user/admin-bebidas');
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al eliminar el la bebida');
+    }
+});
+
+app.get('/user/admin/editar-bebida/:id', checkNotAuthenticated, async (req, res) => {
+    const id = parseInt(req.params.id);
+
+    if (isNaN(id)) return res.status(400).send('ID inválido');
+
+    try {
+        const resultado = await pool.query('SELECT * FROM bebidas WHERE id = $1', [id]);
+        if (resultado.rows.length === 0) return res.status(404).send('Platillo no encontrado');
+
+        // CORRECCIÓN: se cambió req.user.name por req.user.nombre (consistente con el resto)
+        res.render('EditarBebidas.ejs', { user: req.user.nombre, bebida: resultado.rows[0] });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Error al cargar el platillo');
+    }
+});
+
+app.post('/user/admin/actualizar-bebida/:id', checkNotAuthenticated, async (req, res) => {
+    const id = parseInt(req.params.id);
+    const { nombre, precio } = req.body;
+
+    const precioNum = parseFloat(precio);
+    if (isNaN(id) || !nombre || isNaN(precioNum) || precioNum < 0) {
+        return res.status(400).send('Datos inválidos');
+    }
+
+    try {
+        await pool.query(
+            'UPDATE bebidas SET nombre = $1, precio = $2 WHERE id = $3',
+            [nombre.trim(), precioNum, id]
+        );
+        res.redirect('/user/admin-bebidas');
     } catch (err) {
         console.error(err);
         res.status(500).send('Error al actualizar el platillo');
