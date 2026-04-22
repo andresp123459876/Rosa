@@ -17,6 +17,8 @@ const __dirname = path.dirname(__filename);
 // Ahora ya puedes usar __dirname en el resto de tu código
 
 const app = express();
+//neon-vercel le da confianza al uso de coockies
+app.set('trust proxy', 1);
 
 initialize(passport);
 
@@ -59,9 +61,12 @@ app.use(
         secret: process.env.SESSION_SECRET,
         resave: false,
         saveUninitialized: false,
+        proxy:true, //se anade para vercel
         cookie: {
             httpOnly: true,   // la cookie no es accesible desde JavaScript del browser
-            secure: process.env.NODE_ENV === 'production', // solo HTTPS en producción
+            // secure: process.env.NODE_ENV === 'production', // solo HTTPS en producción
+            secure:true,
+            sameSite:'none',
             maxAge: 1000 * 60 * 60 * 2 // sesión expira en 2 horas
         }
     })
@@ -143,60 +148,60 @@ app.get('/user/logout', (req, res, next) => {
 // Nota: la ruta /user/register está oculta en el login (visibility: hidden)
 // Si no quieres que nadie más se registre, puedes eliminar estas dos rutas.
 
-app.get('/user/register', checkAuthenticated, (req, res) => {
-    res.render('Register.ejs');
-});
+// app.get('/user/register', checkAuthenticated, (req, res) => {
+//     res.render('Register.ejs');
+// });
 
-app.post('/user/register', async (req, res) => {
-    let { name, email, password, password2 } = req.body;
+// app.post('/user/register', async (req, res) => {
+//     let { name, email, password, password2 } = req.body;
 
-    // CORRECCIÓN: se eliminó console.log con contraseña en texto plano
-    let errors = [];
+//     // CORRECCIÓN: se eliminó console.log con contraseña en texto plano
+//     let errors = [];
 
-    if (!name || !email || !password || !password2) {
-        errors.push({ message: 'Por favor llena todos los campos' });
-    }
+//     if (!name || !email || !password || !password2) {
+//         errors.push({ message: 'Por favor llena todos los campos' });
+//     }
 
-    if (password && password.length < 6) {
-        errors.push({ message: 'La contraseña debe tener al menos 6 caracteres' });
-    }
+//     if (password && password.length < 6) {
+//         errors.push({ message: 'La contraseña debe tener al menos 6 caracteres' });
+//     }
 
-    if (password !== password2) {
-        errors.push({ message: 'Las contraseñas no coinciden' });
-    }
+//     if (password !== password2) {
+//         errors.push({ message: 'Las contraseñas no coinciden' });
+//     }
 
-    if (errors.length > 0) {
-        return res.render('Register.ejs', { errors });
-    }
+//     if (errors.length > 0) {
+//         return res.render('Register.ejs', { errors });
+//     }
 
-    try {
-        const hashedPassword = await bcrypt.hash(password, 10);
+//     try {
+//         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // CORRECCIÓN: se cambió 'picina' por 'pool' (era un ReferenceError)
-        const existingUser = await pool.query(
-            'SELECT * FROM users WHERE email = $1',
-            [email]
-        );
+//         // CORRECCIÓN: se cambió 'picina' por 'pool' (era un ReferenceError)
+//         const existingUser = await pool.query(
+//             'SELECT * FROM users WHERE email = $1',
+//             [email]
+//         );
 
-        if (existingUser.rows.length > 0) {
-            errors.push({ message: 'El correo ya está registrado' });
-            return res.render('Register.ejs', { errors });
-        }
+//         if (existingUser.rows.length > 0) {
+//             errors.push({ message: 'El correo ya está registrado' });
+//             return res.render('Register.ejs', { errors });
+//         }
 
-        await pool.query(
-            'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)',
-            [name, email, hashedPassword]
-        );
+//         await pool.query(
+//             'INSERT INTO users (name, email, password) VALUES ($1, $2, $3)',
+//             [name, email, hashedPassword]
+//         );
 
-        req.flash('success_msg', 'Registro exitoso. Por favor inicia sesión');
-        res.redirect('/user/login');
+//         req.flash('success_msg', 'Registro exitoso. Por favor inicia sesión');
+//         res.redirect('/user/login');
 
-    } catch (err) {
-        // CORRECCIÓN: en vez de 'throw err' (que crashea el server), se maneja el error
-        console.error('Error en registro:', err);
-        res.status(500).send('Error interno del servidor');
-    }
-});
+//     } catch (err) {
+//         // CORRECCIÓN: en vez de 'throw err' (que crashea el server), se maneja el error
+//         console.error('Error en registro:', err);
+//         res.status(500).send('Error interno del servidor');
+//     }
+// });
 
 // ─── PANEL ADMIN Tacos──────────────────────────────────────────────────────────────
 
