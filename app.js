@@ -86,10 +86,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.get('/', (req, res) => {
     const listaTacos = [
-        { nombre: 'Carnita con Nopales', imagen: '/img/tacos/TacoDeCarnitaConNopales(NegraComic).jpg' },
-        { nombre: 'Chicharrón Prensado', imagen: '/img/tacos/TacoDeChicharronPrensado(NegraComic).jpg' },
-        { nombre: 'Milanesa de Pollo', imagen: '/img/tacosTacoDeMilanesa(NaranjaComic).jpg' },
-        { nombre: 'Mole con Huevo', imagen: '/img/tacosTacoDeMoleConHuevoDuro(NegraComic).jpg' },
+        { nombre: 'Carnita con Nopales', imagen: 'TacoDeCarnitaConNopales(NegraComic).jpg' },
+        { nombre: 'Chicharrón Prensado', imagen: 'TacoDeChicharronPrensado(NegraComic).jpg' },
+        { nombre: 'Milanesa de Pollo', imagen: '/img/tacos/TacoDeMilanesa(NaranjaComic).jpg' },
+        { nombre: 'Mole con Huevo', imagen: './img/tacosTacoDeMoleConHuevoDuro(NegraComic).jpg' },
         { nombre: 'Carnita en Chile Morita', imagen: '/img/tacos/TacoDeMorita(NaranjaComic).jpg' },
         { nombre: 'Salpicon/Aporreadillo', imagen: '/img/tacos/TacoDeSalpicon(NaranjaComic).jpg' },
     ];
