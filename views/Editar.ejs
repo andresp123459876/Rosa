@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
     <link rel="stylesheet" href="/css/admin.css">
+    <link rel="icon" href="/img/LogoTacosDeGuisado.jpg" type="img">
+
     <title>Editar Platillo</title>
 </head>
 
@@ -16,28 +18,29 @@
     </header>
 
     <div class="container" style="margin-top: 50px; padding: 20px; color: #fcc17d; font-size: 3rem;">
-        <%
-        // CORRECCIÓN: había un <form> anidado dentro de otro <form>, eso es HTML inválido
-        // y el botón "Modificar" no enviaba el formulario correcto.
-        // Ahora hay un solo formulario con el action correcto.
-        %>
-        <form action="/user/admin/actualizar/<%= platillo.id %>" method="POST">
+        <% // CORRECCIÓN: había un <form> anidado dentro de otro <form>, eso es HTML inválido
+                // y el botón "Modificar" no enviaba el formulario correcto.
+                // Ahora hay un solo formulario con el action correcto.
+                %>
+                <form action="/user/admin/actualizar/<%= platillo.id %>" method="POST">
 
-            <label for="nombre">Nombre del Platillo</label>
-            <input type="text" id="nombre" name="nombre" value="<%= platillo.nombre %>" class="u-full-width" required>
+                    <label for="nombre">Nombre del Platillo</label>
+                    <input type="text" id="nombre" name="nombre" value="<%= platillo.nombre %>" class="u-full-width"
+                        required>
 
-            <label for="descripcion">Descripción</label>
-            <textarea id="descripcion" name="descripcion" class="u-full-width" required><%= platillo.descripcion %></textarea>
+                    <label for="descripcion">Descripción</label>
+                    <textarea id="descripcion" name="descripcion" class="u-full-width"
+                        required><%= platillo.descripcion %></textarea>
 
-            <label for="precio">Precio</label>
-            <%
-            // CORRECCIÓN: era un <textarea> para el precio, ahora es un <input type="number">
-            // para forzar valores numéricos desde el browser también.
-            %>
-            <input type="number" id="precio" name="precio" value="<%= platillo.precio %>" class="u-full-width" min="0" step="0.01" required>
+                    <label for="precio">Precio</label>
+                    <% // CORRECCIÓN: era un <textarea> para el precio, ahora es un <input type="number">
+                        // para forzar valores numéricos desde el browser también.
+                        %>
+                        <input type="number" id="precio" name="precio" value="<%= platillo.precio %>"
+                            class="u-full-width" min="0" step="0.01" required>
 
-            <button type="submit" class="boton-modificar">Guardar cambios</button>
-        </form>
+                        <button type="submit" class="boton-modificar">Guardar cambios</button>
+                </form>
     </div>
 </body>
 
