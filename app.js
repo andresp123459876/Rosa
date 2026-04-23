@@ -368,15 +368,15 @@ app.post('/user/admin/actualizar-bebida/:id', checkNotAuthenticated, async (req,
     const id = parseInt(req.params.id);
     const { nombre, precio } = req.body;
 
-    const precioNum = parseFloat(precio);
-    if (isNaN(id) || !nombre || isNaN(precioNum) || precioNum < 0) {
+    // const precioNum = parseFloat(precio);
+    if (isNaN(id) || !nombre || isNaN(precio) || precioNum < 0) {
         return res.status(400).send('Datos inválidos');
     }
 
     try {
         await pool.query(
             'UPDATE bebidas SET nombre = $1, precio = $2 WHERE id = $3',
-            [nombre.trim(), precioNum, id]
+            [nombre.trim(), precio, id]
         );
         res.redirect('/user/admin-bebidas');
     } catch (err) {
