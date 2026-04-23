@@ -29,10 +29,10 @@
                         required>
 
                     <label for="precio">Precio</label>
-                    <% // CORRECCIÓN: era un <textarea> para el precio, ahora es un <input type="number">
+                    <% // CORRECCIÓN: era un <textarea> para el precio, ahora es un <input type="text">
                         // para forzar valores numéricos desde el browser también.
                         %>
-                        <input type="number" id="precio" name="precio" value="<%= bebida.precio %>" class="u-full-width"
+                        <input type="text" id="precio" name="precio" value="<%= bebida.precio %>" class="u-full-width"
                             min="0" step="0.01" required>
 
                         <button type="submit" class="boton-modificar">Guardar cambios</button>

@@ -313,15 +313,15 @@ app.post('/user/admin/agregar-bebida', checkNotAuthenticated, async (req, res) =
     const { nombre, precio } = req.body;
 
     // MEJORA: validación del precio en el servidor
-    const precioNum = parseFloat(precio);
-    if (!nombre || isNaN(precioNum) || precioNum < 0 || precioNum > 99999) {
+    // const precioNum = parseFloat(precio);
+    if (!nombre || precio < 0 || precio > 99999) {
         return res.status(400).send('Datos inválidos');
     }
 
     try {
         await pool.query(
             'INSERT INTO bebidas (nombre, precio) VALUES ($1, $2)',
-            [nombre.trim(), precioNum]
+            [nombre.trim(), precio]
         );
         res.redirect('/user/admin-bebidas');
     } catch (err) {
