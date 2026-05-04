@@ -485,6 +485,29 @@ main {
     border-radius: 30%;
 }
 
+@keyframes show {
+    from {
+        opacity: 0;
+        scale: 5%;
+    }
+
+    to{
+        opacity: 1;
+        scale: 100%;
+    }
+}
+
+img {
+    view-timeline-name: --image; /*nombre enlasado al scroll*/
+    view-timeline-axis: block; /*block para vertical*/
+
+    animation-timeline: --image; /*elmento image*/
+    animation-name: show; /*animacion a utilizar que se crea arriba*/
+
+    animation-range: entry 25% cover 50%; /*entrada en 25% y cubra cuando este en 50%*/
+    animation-fill-mode: both;/*modo de relleno al entrar y salir*/
+}
+
 @media screen and (max-width:850px) {
     .logo {
         /* width: 50%; */
