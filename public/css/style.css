@@ -16,6 +16,7 @@ html {
 }
 
 body {
+    background-color: aqua;
     background-image: url('/img/fondoTacosDeGuisado.jpg');
     background-size: cover;
     background-position: center;
