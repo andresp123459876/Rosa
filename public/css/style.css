@@ -92,7 +92,7 @@ header .all {
 
 .menu a {
     color: #fff;
-    font-family: 'Comic Neue', cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     font-size: 2rem;
     text-decoration: none;
     /* margin: 20px; */
@@ -249,7 +249,7 @@ main {
 
 .descripcion p {
     color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     font-size: 25px;
 }
 
@@ -367,7 +367,7 @@ main {
 .servicios-info h4 {
     text-align: center;
     color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     font-size: 3rem;
     padding: 10px;
 }
@@ -375,14 +375,14 @@ main {
 .servicios-info h2 {
     text-align: center;
     color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     font-size: 3rem;
     padding: 20px;
 }
 
 .servicios-info .grid-servicios {
     background-color: transparent;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     text-align: center;
     color: var(--amarillo-letra);
     font-size: 2rem;
@@ -415,13 +415,13 @@ main {
 
 .ubicacion h2 {
     color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     font-size: 3rem;
 }
 
 .ubicacion p {
     color: white;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     font-size: 2rem;
 }
 
@@ -445,7 +445,7 @@ main {
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
     color: white;
 }
 
@@ -577,7 +577,7 @@ img {
     .servicios-info h2 {
         text-align: center;
         color: white;
-        font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: "Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
         font-size: 30px;
         padding: 10px;
     }
