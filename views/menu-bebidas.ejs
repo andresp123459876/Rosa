@@ -13,6 +13,8 @@
     <!-- links para googlefonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+
     <link
         href="https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
         rel="stylesheet">
@@ -36,9 +38,13 @@
             <h1>Menu de Bebidas</h1>
             <% bebidas.forEach(bebida=> { %>
                 <div class="informacion">
-                    <h2 class="nombre-producto"><%= bebida.nombre %></h2>
+                    <h2 class="nombre-producto">
+                        <%= bebida.nombre %>
+                    </h2>
                     <ion-icon class="flecha" name="arrow-forward-outline"></ion-icon>
-                    <p class="p"><%= bebida.precio %></p>
+                    <p class="p">
+                        <%= bebida.precio %>
+                    </p>
                 </div>
                 <% }) %>
         </div>
