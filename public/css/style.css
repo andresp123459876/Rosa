@@ -92,7 +92,7 @@ header .all {
 
 .menu a {
     color: #fff;
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: 'Comic Neue', cursive;
     font-size: 2rem;
     text-decoration: none;
     /* margin: 20px; */
@@ -243,7 +243,7 @@ main {
 
 .descripcion h1 {
     color: var(--amarillo-letra);
-    font-family: "Comic Sans MS", "Comic Sans", cursive;
+    font-family: 'Gochi Hand', cursive;
     font-size: 55px;
 }
 
