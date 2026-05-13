@@ -13,7 +13,7 @@
 }
 
 html {
-    scroll-behavior: smooth;
+   / scroll-behavior: smooth;
 }
 
 body {
@@ -21,7 +21,7 @@ body {
     background-image: url('/img/fondoTacosDeGuisado.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
+    background-attachment: scroll;
     /* El fondo se queda quieto al hacer scroll */
     min-height: 100vh;
     overflow-x: hidden;
