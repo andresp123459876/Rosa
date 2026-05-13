@@ -1,4 +1,4 @@
-*{
+/* *{
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -8,7 +8,8 @@
 :root {
     --amarillo-fondo: #fda912;
     --amarillo-letra: #fcc17d;
-    --font-comic: "Comic Sans MS", "Comic Sans", cursive;
+    --font-comic:"Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
+
 }
 
 header{
@@ -42,4 +43,4 @@ header a:hover{
 
 .container h2 {
     color: white;
-}
+} */

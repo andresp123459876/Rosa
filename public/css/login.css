@@ -9,7 +9,8 @@
     /*#fda912*/
     --amarillo-letra: rgba(252, 193, 125);
     /*#fcc17d*/
-    --font-comic: "Comic Sans MS", "Comic Sans", cursive;
+    --font-comic:"Comic Sans MS", 'Comic Sans','Comic Neue', cursive;
+;
 
 }
 
