@@ -23,6 +23,7 @@ body {
     background-attachment: fixed;
     /* El fondo se queda quieto al hacer scroll */
     min-height: 100vh;
+    overflow: hidden;
 }
 
 header {
@@ -181,7 +182,6 @@ header .all {
 
 main {
     margin-top: 150px;
-    background-color: red;
     /* Evita que el header tape el carrusel */
 }
 
