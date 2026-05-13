@@ -23,7 +23,7 @@ body {
     background-attachment: fixed;
     /* El fondo se queda quieto al hacer scroll */
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 header {
